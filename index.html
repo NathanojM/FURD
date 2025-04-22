@@ -43,7 +43,7 @@
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-17.36113599506612,-48.587469933117845],[70.78045185464873,121.50352053106513]]);
+        }).fitBounds([[-26.83578890978943,-83.56234899139292],[67.11028839983891,97.12593155051661]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -521,18 +521,19 @@
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Player</th>\
-                        <td class="visible-with-data" id="Player">' + (feature.properties['Player'] !== null ? autolinker.link(feature.properties['Player'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Player">' + (feature.properties['Player'] !== null ? autolinker.link(String(feature.properties['Player']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">From</th>\
-                        <td class="visible-with-data" id="From">' + (feature.properties['From'] !== null ? autolinker.link(feature.properties['From'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Flag'] !== null ? '<img src="images/' + String(feature.properties['Flag']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                        <td class="visible-with-data" id="From">' + (feature.properties['From'] !== null ? autolinker.link(String(feature.properties['From']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Trivia</th>\
-                        <td class="visible-with-data" id="Trivia">' + (feature.properties['Trivia'] !== null ? autolinker.link(feature.properties['Trivia'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Trivia">' + (feature.properties['Trivia'] !== null ? autolinker.link(String(feature.properties['Trivia']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Flag</th>\
+                        <td class="visible-with-data" id="Flag">' + (feature.properties['Flag'] !== null ? autolinker.link(String(feature.properties['Flag']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
